@@ -26,6 +26,7 @@ const ratelimiter = ratelimit({
 
 //Setting the Pug engine
 
+app.enable('trust proxy')
 app.set('view engine', 'pug');
 app.set('views engine', path.join(__dirname, 'views'));
 

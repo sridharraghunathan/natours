@@ -32,5 +32,15 @@ const server = app.listen(port, () => {
 
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err);
-  process.exit(1);
+  server.close(()=>{
+    console.log('process terminated')
+    process.exit(1);
+  })
 });
+
+process.on('SIGTERM',()=>{
+  console.log('Sigterm Signal received');
+  server.close(()=>{
+    console.log('process terminated')
+  })
+})
