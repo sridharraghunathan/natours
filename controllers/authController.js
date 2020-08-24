@@ -50,7 +50,6 @@ exports.restrictTo = (...roles) => {
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-  console.log(user)
   //checking the user
   if (!user) {
     return next(new appErrors('404', 'Email Id entered is not exist!!!'));
