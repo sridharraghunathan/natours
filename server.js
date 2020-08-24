@@ -20,13 +20,14 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    //console.log('Connection was succcessFull');
+    console.log('Connection was succcessFull');
      
  
   });
 
 const server = app.listen(port, () => {
- // console.log('waiting for the request !!!');
+  console.log(port)
+ console.log('waiting for the request !!!');
 });
 
 process.on('unhandledRejection', (err) => {

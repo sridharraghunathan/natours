@@ -5,7 +5,7 @@ export const login = async (email, password) => {
   try {
     const login = await axios({
       method: 'POST',
-      url: 'http://localhost:8000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password,
@@ -24,19 +24,15 @@ export const login = async (email, password) => {
 };
 
 export const logout = async () => {
-
   try {
     const logout = await axios({
       method: 'GET',
-      url: 'http://localhost:8000/api/v1/users/logout',
+      url: '/api/v1/users/logout',
     });
 
-
     if (logout.data.status === 'success') {
-
       location.reload(true); // for refreshing the page node js will not refresh we need manually refresh the page
       // so token with wrong will resent and logged off
-
     }
   } catch (err) {
     // console.log(err.data.message);

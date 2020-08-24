@@ -11,7 +11,7 @@ export const checkoutSession = async (tourid) => {
     //1 create an session for the checkout
     const sessionObject = await axios({
       method: 'GET',
-      url: `http://localhost:8000/api/v1/bookings/checkout-Session/${tourid}`,
+      url: `/api/v1/bookings/checkout-Session/${tourid}`,
     });
 
 
