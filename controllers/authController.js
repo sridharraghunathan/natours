@@ -126,7 +126,7 @@ exports.protected = catchAsync(async (req, res, next) => {
   // GRANT ACCESS
   req.user = currentUser;
   res.locals.user = currentUser;
-  console.log(req.user);
+ // console.log(req.user);
   next();
 });
 
@@ -171,7 +171,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
   const url = `${req.protocol}://${req.get('host')}/account`;
-  console.log(url);
+ // console.log(url);
   await new Email(user, url).sendWelcome();
 
   createToken(user, 200, res);
@@ -243,7 +243,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   const user = await User.findById(req.user.id).select('+password');
   //this will give user object
-  console.log(req.body.passwordCurrent, user.password);
+ // console.log(req.body.passwordCurrent, user.password);
 
   //2) check the password from user information and verify with password.
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {

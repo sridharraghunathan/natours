@@ -33,7 +33,7 @@ if (userSaveForm) {
     formInput.append('name', document.getElementById('name').value);
     formInput.append('email', document.getElementById('email').value);
     formInput.append('photo', document.getElementById('photo').files[0]);
-    console.log('form', formInput);
+
     // const name = document.getElementById('name').value;
     // const email = document.getElementById('email').value;
     // updateSetting({ name, email }, 'data');
@@ -64,7 +64,7 @@ if (logoutClick) {
 
 if (booking) {
   booking.addEventListener('click', (e) => {
-    console.log(booking.dataset.tourId);
+
      checkoutSession(e.target.dataset.tourId);
   });
 }

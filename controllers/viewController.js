@@ -30,7 +30,6 @@ exports.tourPage = catchAsync(async (req, res, next) => {
     return next(new ApiErrors('404', 'Tour Name not found'));
   }
 
-  console.log(tour);
   res.status(200).render('tour', {
     title: tour.slug,
     tour,

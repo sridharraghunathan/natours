@@ -8450,7 +8450,6 @@ var login = /*#__PURE__*/function () {
 
           case 3:
             _login = _context.sent;
-            console.log(_login);
 
             if (_login.data.status === 'Success') {
               (0, _alert.showAlert)('success', 'Logged in Success');
@@ -8459,20 +8458,20 @@ var login = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context.next = 11;
+            _context.next = 10;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             (0, _alert.showAlert)('error', _context.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function login(_x, _x2) {
@@ -8490,41 +8489,36 @@ var logout = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            console.log('Entry to Logout: ');
-            _context2.prev = 1;
-            _context2.next = 4;
+            _context2.prev = 0;
+            _context2.next = 3;
             return (0, _axios.default)({
               method: 'GET',
               url: 'http://localhost:8000/api/v1/users/logout'
             });
 
-          case 4:
+          case 3:
             _logout = _context2.sent;
-            console.log(_logout);
 
             if (_logout.data.status === 'success') {
-              console.log('Logging Off');
               location.reload(true); // for refreshing the page node js will not refresh we need manually refresh the page
               // so token with wrong will resent and logged off
-
-              console.log('Logging Off done');
             }
 
-            _context2.next = 13;
+            _context2.next = 10;
             break;
 
-          case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2["catch"](1);
-            console.log(_context2.t0.data.message);
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            // console.log(err.data.message);
             (0, _alert.showAlert)('error', 'Unable to Logout, Please Try Again After some time');
 
-          case 13:
+          case 10:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[1, 9]]);
+    }, _callee2, null, [[0, 7]]);
   }));
 
   return function logout() {
@@ -8608,17 +8602,16 @@ var updateSetting = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(data, type);
-            _context.prev = 1;
+            _context.prev = 0;
             url = type === 'password' ? 'http://localhost:8000/api/v1/users/updateMyPassword' : 'http://localhost:8000/api/v1/users/updateMydetails';
-            _context.next = 5;
+            _context.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
               url: url,
               data: data
             });
 
-          case 5:
+          case 4:
             user = _context.sent;
             console.log(user);
 
@@ -8628,20 +8621,20 @@ var updateSetting = /*#__PURE__*/function () {
               (0, _alert.showAlert)('success', "".concat(type.toUpperCase(), " Successfully updated"));
             }
 
-            _context.next = 13;
+            _context.next = 12;
             break;
 
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](1);
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
             (0, _alert.showAlert)('error', 'Unable to update the request , please try again later!');
 
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[0, 9]]);
   }));
 
   return function updateSetting(_x, _x2) {
@@ -8677,39 +8670,36 @@ var checkoutSession = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('testing');
-            _context.prev = 1;
-            _context.next = 4;
+            _context.prev = 0;
+            _context.next = 3;
             return (0, _axios.default)({
               method: 'GET',
               url: "http://localhost:8000/api/v1/bookings/checkout-Session/".concat(tourid)
             });
 
-          case 4:
+          case 3:
             sessionObject = _context.sent;
-            console.log(sessionObject); //2) create an checkout page for the payment
-
-            _context.next = 8;
+            _context.next = 6;
             return stripe.redirectToCheckout({
               sessionId: sessionObject.data.session.id
             });
 
-          case 8:
-            _context.next = 13;
+          case 6:
+            _context.next = 11;
             break;
 
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](1);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
             //Alert
             (0, _alert.showAlert)('error', _context.t0);
 
-          case 13:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function checkoutSession(_x) {
@@ -9016,8 +9006,7 @@ if (userSaveForm) {
     var formInput = new FormData();
     formInput.append('name', document.getElementById('name').value);
     formInput.append('email', document.getElementById('email').value);
-    formInput.append('photo', document.getElementById('photo').files[0]);
-    console.log('form', formInput); // const name = document.getElementById('name').value;
+    formInput.append('photo', document.getElementById('photo').files[0]); // const name = document.getElementById('name').value;
     // const email = document.getElementById('email').value;
     // updateSetting({ name, email }, 'data');
 
@@ -9068,7 +9057,6 @@ if (logoutClick) {
 
 if (booking) {
   booking.addEventListener('click', function (e) {
-    console.log(booking.dataset.tourId);
     (0, _stripe.checkoutSession)(e.target.dataset.tourId);
   });
 }
@@ -9100,7 +9088,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65344" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

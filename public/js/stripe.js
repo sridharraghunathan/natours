@@ -6,14 +6,14 @@ const stripe = Stripe(
 );
 
 export const checkoutSession = async (tourid) => {
-  console.log('testing');
+
   try {
     //1 create an session for the checkout
     const sessionObject = await axios({
       method: 'GET',
       url: `http://localhost:8000/api/v1/bookings/checkout-Session/${tourid}`,
     });
-    console.log(sessionObject);
+
 
     //2) create an checkout page for the payment
     await stripe.redirectToCheckout({ sessionId: sessionObject.data.session.id });

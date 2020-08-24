@@ -25,7 +25,7 @@ const sendErrorDevelopment = (res, req, err) => {
   err.status = err.status || 'fail';
   if (req.originalUrl.startsWith('/api')) {
     err.status = err.status || 'fail';
-    console.log(`statusCode : ${err.statusCode} and status : ${err.status}`);
+  //  console.log(`statusCode : ${err.statusCode} and status : ${err.status}`);
     return res.status(err.statusCode).json({
       status: err.status,
       message: err.message,

@@ -183,9 +183,9 @@ tourSchema.pre(/^find/, function (next) {
 });
 
 tourSchema.post(/^find/, function (docs, next) {
-  console.log(
-    `Query took total time of ${(Date.now() - this.start) / 1000} Seconds`
-  );
+  // console.log(
+  //   `Query took total time of ${(Date.now() - this.start) / 1000} Seconds`
+  // );
   next();
 });
 

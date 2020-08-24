@@ -16,9 +16,9 @@ exports.createone = (Model) =>
 
 exports.deleteone = (Model) =>
   catchAsync(async (req, res, next) => {
-    console.log(Model);
+
     const doc = await Model.findByIdAndDelete(req.params.id);
-    console.log(doc);
+
     if (!doc) {
       return next(new ApiErrors('404', `No document found for mentioned Id`));
     }
@@ -50,7 +50,6 @@ exports.getOne = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     let query = {};
     query = Model.findById(req.params.id);
-    console.log('data :'+req.params.id)
     if (popOptions) query = query.populate(popOptions);
     const doc = await query;
     if (!doc) {

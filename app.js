@@ -4,6 +4,7 @@ const mongosantize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const app = express();
 const path = require('path');
+const compression = require('compression')
 const cookieParser = require('cookie-parser');
 const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
@@ -64,6 +65,9 @@ app.use(mongosantize());
 
 //Data Sanitization from XSS
 app.use(xss());
+
+//Compression for the response to the user user
+app.use(compression());
 
 //Parameter pollution
 app.use(

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { showAlert } from './alert';
 
 export const updateSetting = async (data, type) => {
-  console.log(data, type);
+
   try {
     const url =
       type === 'password'
@@ -14,7 +14,7 @@ export const updateSetting = async (data, type) => {
       url,
       data,
     });
-    console.log(user);
+
     if (user.data.data === 'success') {
       showAlert('success', `${type.toUpperCase()} Successfully updated`);
     } else if (user.data.status.toLowerCase() === 'success') {
