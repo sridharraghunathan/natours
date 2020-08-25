@@ -12,6 +12,7 @@ const userRouter = require('./routes/userRouter');
 const reviewRouter = require('./routes/reviewRouter');
 const viewRouter = require('./routes/viewRouter');
 const bookingRouter = require('./routes/bookingRouter');
+const bookingController = require('./controllers/bookingController');
 const hpp = require('hpp');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -38,8 +39,8 @@ app.use(cors());
 // const originAllow = { origin: 'https://wwww.natours.com' };
 // app.use(cors(originAllow));
 
-//For allowing the Non Simple Request 
-app.options('*',cors());
+//For allowing the Non Simple Request
+app.options('*', cors());
 //allowing Non Simple Request specified routes
 // app.options('/api/v1/tours/:id', cors())
 
@@ -64,6 +65,16 @@ app.use(express.static(`${__dirname}/public`));
 // );
 //Used for Limiting the Number of request from the IP
 app.use('/api', ratelimiter);
+
+// This route will be Hit after completion Successful payment on Stripe account
+// This should be before JSON parse middle ware do req will be in raw format.
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
+
 //Used for reading the data from body to req.body
 app.use(
   express.json({
