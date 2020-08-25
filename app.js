@@ -3,8 +3,9 @@ const ratelimit = require('express-rate-limit');
 const mongosantize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const app = express();
+const cors = require('cors');
 const path = require('path');
-const compression = require('compression')
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
@@ -26,9 +27,21 @@ const ratelimiter = ratelimit({
 
 //Setting the Pug engine
 
-app.enable('trust proxy')
+app.enable('trust proxy');
 app.set('view engine', 'pug');
 app.set('views engine', path.join(__dirname, 'views'));
+
+// Implementing Cors Request for
+//Below will allow all the Origin for the GET and POST request
+app.use(cors());
+//Specific Origin Request
+// const originAllow = { origin: 'https://wwww.natours.com' };
+// app.use(cors(originAllow));
+
+//For allowing the Non Simple Request 
+app.options('*',cors());
+//allowing Non Simple Request specified routes
+// app.options('/api/v1/tours/:id', cors())
 
 //Used for serving the static files
 app.use(express.static(`${__dirname}/public`));
@@ -100,7 +113,7 @@ app.use((req, res, next) => {
 });
 // we are using middleware for routing and having separate file we
 // we use separate concept for routing called mounting
-// This is for Client side routing App 
+// This is for Client side routing App
 app.use('/', viewRouter);
 
 // this is for API ROUTING
