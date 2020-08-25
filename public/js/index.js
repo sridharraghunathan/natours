@@ -1,11 +1,13 @@
 import '@babel/polyfill';
 import { login, logout } from './login';
+import { signupUser } from './signup';
 import { displaymapBox } from './mapbox';
 import { updateSetting } from './updateSetting';
 import { checkoutSession } from './stripe';
 import { showAlert } from './alert';
 
 const loginForm = document.querySelector('.form--login');
+const signupForm = document.querySelector('.form--signup');
 const mapBox = document.getElementById('map');
 const logoutClick = document.querySelector('.nav__el--logout');
 const userSaveForm = document.querySelector('.form-user-data');
@@ -19,6 +21,16 @@ if (mapBox) {
   displaymapBox(locations);
 }
 
+if (signupForm) {
+  signupForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('password__confirm').value;
+    signupUser(name,email,password, passwordConfirm)
+  });
+}
 if (loginForm) {
   loginForm.addEventListener('submit', (event) => {
     event.preventDefault();

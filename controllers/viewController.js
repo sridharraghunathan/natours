@@ -3,8 +3,8 @@ const Booking = require('./../models/bookingModels');
 const catchAsync = require('../utils/catchAsync');
 const ApiErrors = require('../utils/appErrors');
 
-exports.alertMessage = (req,res, next) => {
-  const {alert} = req.query;
+exports.alertMessage = (req, res, next) => {
+  const { alert } = req.query;
 
   if (alert === 'Booking') {
     req.locals.alert =
@@ -49,7 +49,12 @@ exports.tourPage = catchAsync(async (req, res, next) => {
 });
 
 exports.login = (req, res) => {
+  //render('pug temaplate name')
   res.status(200).render('login', { title: 'Login' });
+};
+
+exports.signup = (req, res) => {
+  res.status(200).render('signup', { title: 'Create Your Account' });
 };
 
 exports.account = (req, res) => {
