@@ -70,4 +70,4 @@ if (booking) {
   });
 }
 
-if (alertMessage) showAlert('success', alertMessage);
+if (alertMessage) showAlert('success', alertMessage, 15);
