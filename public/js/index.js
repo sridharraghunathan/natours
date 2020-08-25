@@ -3,6 +3,7 @@ import { login, logout } from './login';
 import { displaymapBox } from './mapbox';
 import { updateSetting } from './updateSetting';
 import { checkoutSession } from './stripe';
+import { showAlert } from './alert';
 
 const loginForm = document.querySelector('.form--login');
 const mapBox = document.getElementById('map');
@@ -10,6 +11,7 @@ const logoutClick = document.querySelector('.nav__el--logout');
 const userSaveForm = document.querySelector('.form-user-data');
 const passwordForm = document.querySelector('.form-user-settings');
 const booking = document.getElementById('book-tour');
+const alertMessage = document.querySelector('body').dataset.alert;
 
 // there is propert in html called data it store something there we can retrieve from there
 if (mapBox) {
@@ -64,7 +66,8 @@ if (logoutClick) {
 
 if (booking) {
   booking.addEventListener('click', (e) => {
-
-     checkoutSession(e.target.dataset.tourId);
+    checkoutSession(e.target.dataset.tourId);
   });
 }
+
+if (alertMessage) showAlert('success', alertMessage);

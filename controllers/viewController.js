@@ -3,6 +3,18 @@ const Booking = require('./../models/bookingModels');
 const catchAsync = require('../utils/catchAsync');
 const ApiErrors = require('../utils/appErrors');
 
+exports.alertMessage = (req,res, next) => {
+  const {alert} = req.query;
+
+  if (alert === 'Booking') {
+    req.locals.alert =
+      'Your Booking has been completed Successfully, Payment has been received , \
+       if you are not the booked request in the current page , please open the website after somtime.';
+  }
+
+  next();
+};
+
 exports.getOverview = catchAsync(async (req, res, next) => {
   //1 ) Get the Tour Data from the database
 
